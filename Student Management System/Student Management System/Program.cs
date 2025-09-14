@@ -20,13 +20,21 @@ namespace StudentManagementSystem
 
     }
 
+    interface IJobs // Defines Jobs available at the campus, interface allows multiple inheritance, methods and properties only. 
+    {
+        public int JobId { get; set; } // JobId
+        public string JobTittle{ get; set; } // JobName
+             
+
+    }
+
 
     class Student : Person // Student is a person 
     {
         public int Marks { get; set; }
         public Student(string Name, int Id, int marks) : base(Name, Id) 
         {
-            Marks = Marks;
+            Marks = marks;
         }      
     }
 
@@ -40,8 +48,15 @@ namespace StudentManagementSystem
         }
     }
 
-    class Staff
+    class Staff: Person, IJobs // Staff stores StaffName, StaffId, JobId, JobTittle
     {
+        public int JobId { get; set; } // JobId
+        public string JobTittle { get; set; } // JobName
+        public Staff(string Name, int Id, int jobId, string jobTittle) : base (Name, Id) {
+
+            JobId = jobId;
+            JobTittle = jobTittle;
+        }
 
     }
     class MarkConvert : IMarkConversion
@@ -59,46 +74,46 @@ namespace StudentManagementSystem
     }
 
 
-    internal class StudentsDetails
-    {
-        private Student[] students = new Student[10]; // Maximum of 10 Students Stored
-        private int initialStudents = 0;
+    //internal class StudentsDetails
+    //{
+    //    private Student[] students = new Student[10]; // Maximum of 10 Students Stored
+    //    private int initialStudents = 0;
 
-        public void AddStudent(string name, int id, int mark)
-        {
-            students[initialStudents] = new Student(name, id, mark);
-            initialStudents++;
-        }
+    //    public void AddStudent(string name, int id, int mark)
+    //    {
+    //        students[initialStudents] = new Student(name, id, mark);
+    //        initialStudents++;
+    //    }
      
-    }
+    //}
 
     
 class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("--Welcome To Student Management System!--");
+            //Console.WriteLine("--Welcome To Student Management System!--");
 
-            Console.Write("Enter Your Name: ");
-            string name = Console.ReadLine().Trim();
+            //Console.Write("Enter Your Name: ");
+            //string name = Console.ReadLine().Trim();
 
-            Console.Write("Enter Your Id: ");
-            int id = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Enter Your Id: ");
+            //int id = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Enter Your Marks: ");
-            int marks = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Enter Your Marks: ");
+            //int marks = Convert.ToInt32(Console.ReadLine());
 
             
 
 
-            StudentsDetails studentdetails =  new StudentsDetails();
-            MarkConvert markconvertor = new MarkConvert();
+            //StudentsDetails studentdetails =  new StudentsDetails();
+            //MarkConvert markconvertor = new MarkConvert();
 
-            Console.WriteLine("--Student Grade--");
-            Console.WriteLine(markconvertor.MarkConvertor(marks));
+            //Console.WriteLine("--Student Grade--");
+            //Console.WriteLine(markconvertor.MarkConvertor(marks));
 
 
-            studentdetails.AddStudent(name, id , marks);
+            //studentdetails.AddStudent(name, id , marks);
             
 
         }
